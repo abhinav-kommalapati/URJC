@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undergraduate Research Journal Club - UMass Amherst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #881c1c 0%, #b91d1d 50%, #881c1c 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23881c1c" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #881c1c;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(136, 28, 28, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #881c1c;
+            border: 2px solid #881c1c;
+        }
+
+        .btn-secondary:hover {
+            background: #881c1c;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #881c1c;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            border-radius: 2px;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Activities Grid */
+        .activities {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #881c1c;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-card h3 {
+            color: #881c1c;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .activity-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: #f8f9fa;
+            transform: translateX(10px);
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            color: #881c1c;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .benefit-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #881c1c, #b91d1d);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 350px;
+            margin-right: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 0;
+            margin-left: 2rem;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-year {
+            color: #881c1c;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: #881c1c;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #881c1c;
+            top: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            background: #881c1c;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact .section-title {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact .section-title::after {
+            background: white;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #881c1c;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .timeline-line {
+                left: 2rem;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 4rem;
+                padding-right: 0;
+            }
+
+            .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 0;
+                margin-right: 0;
+                max-width: none;
+            }
+
+            .timeline-dot {
+                left: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                📚 URJC UMass
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#mission">Mission</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#contact">Join Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Undergraduate Research Journal Club</h1>
+            <p class="subtitle">Empowering UMass Amherst students to showcase their research, connect across disciplines, and contribute to academic excellence through peer-reviewed publication.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Join the Club 🚀</a>
+                <a href="#activities" class="btn btn-secondary">Learn More 📖</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission">
+        <div class="container">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="mission-content">
+                <p>We provide a platform for undergraduate students across all departments at UMass Amherst to showcase their research work. Our club collects, edits, and publishes a student-led research journal in digital format, promoting student research and making it accessible to peers, professors, and the broader UMass community.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="activities">
+        <div class="container">
+            <h2 class="section-title">What We Do</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="activity-icon">📝</div>
+                    <h3>Collect & Curate Research</h3>
+                    <p>We maintain a dedicated submission website where students can submit their original research papers for peer review and potential publication.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">✏️</div>
+                    <h3>Editorial Excellence</h3>
+                    <p>Our editorial board works collaboratively to review, edit, and compile high-quality student research into professional journal issues.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🌐</div>
+                    <h3>Digital Publishing</h3>
+                    <p>We publish journal issues online and promote them through email campaigns and social media to maximize research visibility.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🎓</div>
+                    <h3>Workshops & Training</h3>
+                    <p>Regular workshops on research writing, publishing ethics, data visualization, and academic presentation skills.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🤝</div>
+                    <h3>Faculty Connections</h3>
+                    <p>We facilitate opportunities for faculty feedback, mentorship, and recognition of outstanding student research work.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🔬</div>
+                    <h3>Cross-Disciplinary Collaboration</h3>
+                    <p>Connect with researchers from different departments and explore interdisciplinary approaches to complex problems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">What You'll Gain</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <div class="benefit-content">
+                        <h4>Research Experience</h4>
+                        <p>Gain hands-on experience with the academic publishing process from submission to final publication.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">👥</div>
+                    <div class="benefit-content">
+                        <h4>Peer Review Skills</h4>
+                        <p>Learn to review and edit research papers, developing critical thinking and constructive feedback abilities.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                        <h4>Leadership Opportunities</h4>
+                        <p>Take on editorial board roles, manage projects, and develop practical leadership and management skills.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌟</div>
+                    <div class="benefit-content">
+                        <h4>Portfolio Building</h4>
+                        <p>Build a strong academic portfolio with published work and editorial experience for graduate school or career applications.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💡</div>
+                    <div class="benefit-content">
+                        <h4>Interdisciplinary Learning</h4>
+                        <p>Collaborate with students from different fields and gain exposure to diverse research methodologies.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔗</div>
+                    <div class="benefit-content">
+                        <h4>Professional Network</h4>
+                        <p>Connect with faculty mentors, peer researchers, and build relationships that support your academic journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="timeline">
+        <div class="container">
+            <h2 class="section-title">Five-Year Vision</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025-2026</div>
+                        <p>Launch our first journal issue and establish our website and submission system infrastructure.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2026-2027</div>
+                        <p>Double our submission volume and establish partnerships with 3+ academic departments across campus.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2027-2028</div>
+                        <p>Launch our print edition pilot program and establish a faculty advisory board for enhanced guidance.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2028-2029</div>
+                        <p>Host our first campus-wide undergraduate research symposium to celebrate student achievements.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2029-2030</div>
+                        <p>Archive 5 complete journal volumes and gain recognition as an official UMass research outlet.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Ready to Join?</h2>
+                <div class="contact-info">
+                    <p>Open to all UMass Amherst undergraduate students across all departments. No prior research experience required – just enthusiasm for learning and academic excellence!</p>
+                    <p><strong>Membership:</strong> Free and open to all undergraduates<br>
+                    <strong>Meetings:</strong> General body meetings and specialized committee sessions<br>
+                    <strong>Commitment:</strong> Flexible participation based on your interests and availability</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="mailto:urjc@umass.edu" class="btn btn-secondary">Email Us 📧</a>
+                    <a href="#" class="btn btn-primary">Submit Research 📄</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Undergraduate Research Journal Club - University of Massachusetts Amherst</p>
+            <p>Empowering student researchers across all disciplines</p>
+            <div class="social-links">
+                <a href="#">📧</a>
+                <a href="#">📱</a>
+                <a href="#">🌐</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to timeline items
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items and cards
+        document.querySelectorAll('.timeline-item, .activity-card, .benefit-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Add dynamic header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(136, 28, 28, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #881c1c 0%, #b91d1d 50%, #881c1c 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
