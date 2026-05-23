@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undergraduate Research Journal Club - UMass Amherst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #881c1c 0%, #b91d1d 50%, #881c1c 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23881c1c" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #881c1c;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(136, 28, 28, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #881c1c;
+            border: 2px solid #881c1c;
+        }
+
+        .btn-secondary:hover {
+            background: #881c1c;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #881c1c;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            border-radius: 2px;
+        }
+
+        .mission-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .mission-block {
+            background: #f8f9fa;
+            border-left: 4px solid #881c1c;
+            border-radius: 0 12px 12px 0;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .mission-block h3 {
+            color: #881c1c;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-block p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Journal Preview Section */
+        .journal-preview {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+
+        .journal-preview .section-title {
+            color: white;
+        }
+
+        .journal-preview .section-title::after {
+            background: white;
+        }
+
+        .journal-preview-inner {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .journal-cover {
+            flex: 0 0 260px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), -8px 0 0 #ccc, -10px 2px 0 #bbb;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .journal-cover:hover {
+            transform: scale(1.04) rotate(-1deg);
+        }
+
+        .journal-cover-header {
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            color: white;
+            padding: 1.2rem 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .journal-cover-header .journal-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .journal-cover-header .journal-subtitle {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            opacity: 0.85;
+            margin-top: 0.2rem;
+        }
+
+        .journal-cover-body {
+            padding: 1.2rem 1.5rem;
+            color: #333;
+        }
+
+        .journal-cover-body .issue-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #881c1c;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .journal-cover-body .article-preview {
+            border-bottom: 1px solid #eee;
+            padding: 0.5rem 0;
+            font-size: 0.82rem;
+            color: #444;
+            line-height: 1.4;
+        }
+
+        .journal-cover-body .article-preview:last-child {
+            border-bottom: none;
+        }
+
+        .journal-cover-body .article-preview strong {
+            color: #222;
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        .journal-info {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .journal-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .journal-info p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .journal-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Activities Grid */
+        .activities {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #881c1c;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-card h3 {
+            color: #881c1c;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .activity-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: #f8f9fa;
+            transform: translateX(10px);
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            color: #881c1c;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .benefit-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Submission Process Timeline */
+        .submission-process {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            max-width: 800px;
+            margin: 3rem auto 0;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            left: 36px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #881c1c, #b91d1d);
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 0 0 2.5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step:last-child {
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            width: 76px;
+            height: 76px;
+            min-width: 76px;
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 800;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(136,28,28,0.3);
+            z-index: 2;
+        }
+
+        .step-content {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            flex: 1;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-content:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            transform: translateX(5px);
+        }
+
+        .step-content h4 {
+            color: #881c1c;
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Contact / Join Section */
+        .contact {
+            padding: 4rem 0;
+            background: #881c1c;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact .section-title {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact .section-title::after {
+            background: white;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Mailing List */
+        .mailing-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .mailing-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mailing-section p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 1.2rem;
+        }
+
+        .mailing-form {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .mailing-form input {
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 220px;
+            max-width: 320px;
+            outline: none;
+            color: #333;
+        }
+
+        .mailing-form button {
+            padding: 0.8rem 1.8rem;
+            background: white;
+            color: #881c1c;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mailing-form button:hover {
+            background: #333;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mailing-success {
+            display: none;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #881c1c;
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 620px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #888;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #881c1c;
+        }
+
+        .modal h2 {
+            color: #881c1c;
+            margin-bottom: 0.5rem;
+            font-size: 1.7rem;
+        }
+
+        .modal > p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            font-family: inherit;
+            color: #333;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #881c1c;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #881c1c, #b91d1d);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(136,28,28,0.3);
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .form-success .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-success h3 {
+            color: #881c1c;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-success p {
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .journal-preview-inner {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .journal-cover {
+                flex: 0 0 auto;
+                width: 220px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps::before {
+                left: 30px;
+            }
+
+            .step-number {
+                width: 64px;
+                height: 64px;
+                min-width: 64px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                📚 URJC UMass
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#mission">Mission</a></li>
+                    <li><a href="#journal">The Flagship</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#process">Submit</a></li>
+                    <li><a href="#contact">Join Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Undergraduate Research Journal Club</h1>
+            <p class="subtitle">A supportive community at UMass Amherst where undergraduate students develop research writing skills, get published in <em>The Flagship</em>, and connect across disciplines.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Join the Club 🚀</a>
+                <button onclick="openSubmitModal()" class="btn btn-secondary">Submit Research 📄</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission">
+        <div class="container">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="mission-content">
+                <div class="mission-block">
+                    <h3>📌 The Club</h3>
+                    <p>The mission of the UMass Undergraduate Research Journal Club (URJC) is to provide students with opportunities to develop their research writing skills through workshops and information sessions, while also offering a selective platform for exceptional undergraduate work to be peer-reviewed and published in its affiliated journal, <strong>The Flagship</strong>. The club also fosters academic and professional connections through networking with affiliated faculty and a semesterly symposium.</p>
+                </div>
+                <div class="mission-block">
+                    <h3>📰 The Flagship Undergraduate Research Journal</h3>
+                    <p>The Flagship Undergraduate Research Journal at UMass Amherst is committed to publishing and showcasing exceptional undergraduate research papers and articles across a wide range of disciplines within the Five College Consortium. The journal aims to provide a platform for students to present original, well-supported research that is comprehensible to a broader audience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journal Preview Section -->
+    <section id="journal" class="journal-preview">
+        <div class="container">
+            <h2 class="section-title">The Flagship Journal</h2>
+            <div class="journal-preview-inner">
+                <div class="journal-cover" onclick="window.open('https://drive.google.com/drive/folders/1MF4kUfgtqfhKVm-kLQ-T8MG8wsTLP59x', '_blank')">
+                    <div class="journal-cover-header">
+                        <div class="journal-name">The Flagship</div>
+                        <div class="journal-subtitle">Undergraduate Research Journal · UMass Amherst</div>
+                    </div>
+                    <div class="journal-cover-body">
+                        <div class="issue-label">📖 Volume I · Issue 1 · 2025</div>
+                        <div class="article-preview">
+                            <strong>Research Across Disciplines</strong>
+                            Original student work from the Five College Consortium
+                        </div>
+                        <div class="article-preview">
+                            <strong>Peer-Reviewed</strong>
+                            Faculty-advised editorial process
+                        </div>
+                        <div class="article-preview">
+                            <strong>Open Access</strong>
+                            Free to read, cite, and share
+                        </div>
+                        <div class="article-preview" style="text-align:center; padding-top: 0.8rem;">
+                            <span style="color:#881c1c; font-weight:700; font-size:0.85rem;">Click to view full journal →</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="journal-info">
+                    <h3>Published by UMass Undergraduates</h3>
+                    <p>The Flagship is a student-led research journal accepting original work across all disciplines — humanities, social sciences, STEM, and beyond. Submissions are open to students across the Five College Consortium.</p>
+                    <p>Each issue is peer-reviewed by fellow students and faculty advisors, then published online and promoted across campus to maximize your research's reach.</p>
+                    <div class="journal-actions">
+                        <a href="https://drive.google.com/drive/folders/1MF4kUfgtqfhKVm-kLQ-T8MG8wsTLP59x" target="_blank" class="btn btn-secondary" style="background:transparent; color:white; border-color:white;">View Journal 📖</a>
+                        <button onclick="openSubmitModal()" class="btn btn-primary">Submit Your Work 📄</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="activities">
+        <div class="container">
+            <h2 class="section-title">What We Do</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="activity-icon">📝</div>
+                    <h3>Collect & Curate Research</h3>
+                    <p>We maintain a dedicated submission website where students can submit their original research papers for peer review and potential publication in <strong>The Flagship</strong>.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">✏️</div>
+                    <h3>Peer Review & Editing</h3>
+                    <p>Our editorial board collaboratively reviews, edits, and compiles high-quality student research. Each paper receives feedback from both student editors and professor advisors.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🚩</div>
+                    <h3>Publish Through The Flagship</h3>
+                    <p>We publish journal issues through <strong>The Flagship URJ</strong> — our affiliated undergraduate research journal — and promote each issue via email campaigns and social media.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🎓</div>
+                    <h3>Workshops & Info Sessions</h3>
+                    <p>Regular workshops on research writing and publishing ethics help students improve their academic communication and prepare competitive submissions.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🤝</div>
+                    <h3>Faculty Connections</h3>
+                    <p>We facilitate opportunities for faculty feedback, mentorship, and recognition of outstanding student research work across all departments.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🔬</div>
+                    <h3>Cross-Disciplinary Collaboration</h3>
+                    <p>Connect with researchers from different departments across the Five College Consortium and explore interdisciplinary approaches to complex problems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">What You'll Gain</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <div class="benefit-content">
+                        <h4>Research Experience</h4>
+                        <p>Gain hands-on experience with the academic publishing process from submission to final publication in The Flagship.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">👥</div>
+                    <div class="benefit-content">
+                        <h4>Peer Review Skills</h4>
+                        <p>Learn to review and edit research papers, developing critical thinking and constructive feedback abilities.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                        <h4>Leadership Opportunities</h4>
+                        <p>Serve on the editorial board, manage the website, or lead outreach — developing practical project management and leadership skills.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌟</div>
+                    <div class="benefit-content">
+                        <h4>Portfolio Building</h4>
+                        <p>Build a strong academic portfolio with published work and editorial experience for graduate school or career applications.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💡</div>
+                    <div class="benefit-content">
+                        <h4>Interdisciplinary Learning</h4>
+                        <p>Collaborate with students from different fields across the Five College Consortium and gain exposure to diverse research methodologies.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔗</div>
+                    <div class="benefit-content">
+                        <h4>Professional Network</h4>
+                        <p>Connect with faculty mentors, peer researchers, and build relationships that support your academic and career journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submission Process Section -->
+    <section id="process" class="submission-process">
+        <div class="container">
+            <h2 class="section-title">Submission Process</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Submit Your Research</h4>
+                        <p>Fill out our submission form with your paper, department, and research details. Open to all UMass Amherst and Five College undergraduate students.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Initial Editorial Review</h4>
+                        <p>The editorial board performs an initial screening to assess scope, originality, and formatting. Authors are notified within 2 weeks.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Peer Review</h4>
+                        <p>Accepted submissions are reviewed by fellow student editors and faculty advisor reviewers from the relevant department.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Revisions & Feedback</h4>
+                        <p>Authors receive detailed feedback and may be asked to revise their paper. This collaborative process ensures publication-ready quality.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Final Editing & Compilation</h4>
+                        <p>Approved papers are copy-edited and formatted for inclusion in the next issue of <strong>The Flagship</strong>.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Publication & Promotion</h4>
+                        <p>Your research is published online in <strong>The Flagship</strong> and promoted via email and social media to the UMass and Five College community.</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top: 3rem;">
+                <button onclick="openSubmitModal()" class="btn btn-primary" style="font-size:1.1rem;">Start Your Submission 📄</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Ready to Join?</h2>
+                <div class="contact-info">
+                    <p>Open to all UMass Amherst and Five College undergraduate students across all departments. No prior research experience required — just enthusiasm for learning and academic excellence!</p>
+                    <p><strong>Membership:</strong> Free and open to all undergraduates<br>
+                    <strong>Meetings:</strong> General body meetings and specialized committee sessions<br>
+                    <strong>Commitment:</strong> Flexible participation based on your interests and availability</p>
+                </div>
+
+                <!-- Mailing List -->
+                <div class="mailing-section">
+                    <h3>📬 Join Our Mailing List</h3>
+                    <p>Get notified about new journal issues, submission deadlines, workshops, and club events.</p>
+                    <div class="mailing-form">
+                        <input type="email" id="mailingEmail" placeholder="your@umass.edu" />
+                        <button onclick="subscribeMailingList()">Subscribe</button>
+                    </div>
+                    <div class="mailing-success" id="mailingSuccess">
+                        ✅ You're subscribed! Check your inbox for a confirmation email.
+                    </div>
+                </div>
+
+                <div class="cta-buttons" style="margin-top:1.5rem;">
+                    <a href="mailto:urjc@umass.edu" class="btn btn-secondary">Email Us 📧</a>
+                    <button onclick="openSubmitModal()" class="btn btn-primary">Submit Research 📄</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Undergraduate Research Journal Club - University of Massachusetts Amherst</p>
+            <p>Empowering student researchers across all disciplines · <a href="https://drive.google.com/drive/folders/1MF4kUfgtqfhKVm-kLQ-T8MG8wsTLP59x" target="_blank" style="color:#b91d1d;">The Flagship Journal</a></p>
+            <div class="social-links">
+                <a href="mailto:urjc@umass.edu">📧</a>
+                <a href="#">📱</a>
+                <a href="https://drive.google.com/drive/folders/1MF4kUfgtqfhKVm-kLQ-T8MG8wsTLP59x" target="_blank">🌐</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Submit Research Modal -->
+    <div class="modal-overlay" id="submitModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeSubmitModal()">×</button>
+            <div id="submitFormContent">
+                <h2>Submit Your Research 📄</h2>
+                <p>Fill out the form below to submit your work for consideration in <strong>The Flagship</strong>. All UMass Amherst and Five College undergraduate students are welcome.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name *</label>
+                        <input type="text" id="firstName" placeholder="Jane" />
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name *</label>
+                        <input type="text" id="lastName" placeholder="Smith" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>University Email *</label>
+                    <input type="email" id="submitEmail" placeholder="jsmith@umass.edu" />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Home Institution *</label>
+                        <select id="institution">
+                            <option value="">Select...</option>
+                            <option>UMass Amherst</option>
+                            <option>Amherst College</option>
+                            <option>Smith College</option>
+                            <option>Mount Holyoke College</option>
+                            <option>Hampshire College</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Year *</label>
+                        <select id="year">
+                            <option value="">Select...</option>
+                            <option>Freshman</option>
+                            <option>Sophomore</option>
+                            <option>Junior</option>
+                            <option>Senior</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Department / Field of Study *</label>
+                    <select id="department">
+                        <option value="">Select your department...</option>
+                        <optgroup label="STEM">
+                            <option>Biology</option>
+                            <option>Chemistry</option>
+                            <option>Computer Science</option>
+                            <option>Environmental Science</option>
+                            <option>Mathematics / Statistics</option>
+                            <option>Physics</option>
+                            <option>Public Health</option>
+                            <option>Psychology</option>
+                            <option>Other STEM</option>
+                        </optgroup>
+                        <optgroup label="Social Sciences & Humanities">
+                            <option>Economics</option>
+                            <option>History</option>
+                            <option>Political Science</option>
+                            <option>Sociology</option>
+                            <option>English / Literature</option>
+                            <option>Philosophy</option>
+                            <option>Linguistics</option>
+                            <option>Communication</option>
+                            <option>Other Humanities / Social Sciences</option>
+                        </optgroup>
+                        <optgroup label="Other">
+                            <option>Business / Management</option>
+                            <option>Education</option>
+                            <option>Fine Arts</option>
+                            <option>Interdisciplinary</option>
+                            <option>Other</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Paper Title *</label>
+                    <input type="text" id="paperTitle" placeholder="Title of your research paper" />
+                </div>
+
+                <div class="form-group">
+                    <label>Abstract / Brief Description *</label>
+                    <textarea id="abstract" placeholder="Provide a brief abstract or description of your research (150–300 words)..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Submission Status</label>
+                    <select id="status">
+                        <option value="">Select...</option>
+                        <option>Completed paper ready for review</option>
+                        <option>Work in progress — seeking feedback</option>
+                        <option>Just exploring — not submitting yet</option>
+                    </select>
+                </div>
+
+                <button class="form-submit" onclick="submitResearch()">Submit for Review 🚀</button>
+            </div>
+
+            <div class="form-success" id="submitSuccess">
+                <div class="success-icon">🎉</div>
+                <h3>Submission Received!</h3>
+                <p>Thank you for submitting to <strong>The Flagship</strong>. Our editorial team will review your submission and be in touch within 2 weeks.</p>
+                <br>
+                <button onclick="closeSubmitModal()" class="btn btn-primary" style="margin: 0 auto;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = entry.target.dataset.transform || 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.activity-card, .benefit-item, .process-step').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(136, 28, 28, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #881c1c 0%, #b91d1d 50%, #881c1c 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Modal functions
+        function openSubmitModal() {
+            document.getElementById('submitModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSubmitModal() {
+            document.getElementById('submitModal').classList.remove('active');
+            document.body.style.overflow = '';
+            // Reset form
+            document.getElementById('submitFormContent').style.display = 'block';
+            document.getElementById('submitSuccess').style.display = 'none';
+        }
+
+        document.getElementById('submitModal').addEventListener('click', function(e) {
+            if (e.target === this) closeSubmitModal();
+        });
+
+        // Submit research form
+        function submitResearch() {
+            const required = ['firstName', 'lastName', 'submitEmail', 'institution', 'year', 'department', 'paperTitle', 'abstract'];
+            let valid = true;
+            required.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el.value.trim()) {
+                    el.style.borderColor = '#e53935';
+                    valid = false;
+                } else {
+                    el.style.borderColor = '#e0e0e0';
+                }
+            });
+
+            if (!valid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // In production: POST to your backend or Google Apps Script web app URL
+            // For now, show success state
+            document.getElementById('submitFormContent').style.display = 'none';
+            document.getElementById('submitSuccess').style.display = 'block';
+        }
+
+        // Mailing list subscribe
+        function subscribeMailingList() {
+            const email = document.getElementById('mailingEmail').value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // In production: POST to Google Apps Script web app for Gmail automation
+            // Example endpoint (replace with your Apps Script URL):
+            // fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+            //   method: 'POST',
+            //   body: JSON.stringify({ email }),
+            //   headers: { 'Content-Type': 'application/json' }
+            // });
+
+            document.getElementById('mailingSuccess').style.display = 'block';
+            document.getElementById('mailingEmail').value = '';
+        }
+    </script>
+</body>
+</html>
